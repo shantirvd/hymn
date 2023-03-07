@@ -7,16 +7,14 @@
 // General style
 $font-family-sans-serif: $body-font;
 $headings-font-family:   $headers-font;
-$body-bg:                $light-gray;
+$body-bg:                $linear-gradient(180deg, rgba($App-dark, 1), rgba($App-light, 1));
 $font-size-base:         1rem;
 
 // Colors
-$body-color: $gray;
-$primary:    $blue;
-$success:    $green;
-$info:       $yellow;
+$body-color: $Dark-000;
+$success:    $blue;
 $danger:     $red;
-$warning:    $orange;
+$warning:    $yellow;
 
 // Buttons & inputs' radius
 $border-radius:    2px;
