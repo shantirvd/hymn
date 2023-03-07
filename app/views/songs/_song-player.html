@@ -1,0 +1,13 @@
+<script src="https://open.spotify.com/embed-podcast/iframe-api/v1" async></script>
+<script>
+  window.onSpotifyIframeApiReady = (IFrameAPI) => {
+    let element = document.getElementById('embed-iframe');
+    let options = {
+        uri: 'spotify:track:4CAJWoy2MpfDFHirq2ekwB'
+      };
+    let callback = (EmbedController) => {};
+    IFrameAPI.createController(element, options, callback);
+  };
+</script>
+
+<iframe id="embed-iframe" src="" frameborder="0"></iframe>
