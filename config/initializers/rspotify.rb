@@ -1,1 +1,1 @@
-RSpotify.authenticate(SPOTIFY_CLIENT_ID, SPOTIFY_SECRET_ID)
+RSpotify.authenticate(ENV['SPOTIFY_CLIENT_ID'], ENV['SPOTIFY_SECRET_ID'])
