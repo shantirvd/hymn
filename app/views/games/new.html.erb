@@ -1,0 +1,7 @@
+<h1>Create a new game</h1>
+<h2>Select a playlist</h2>
+
+<%= simple_form_for :search, url: new_game_path, method: "GET", html: { class: 'form-inline' } do |f| %>
+  <%= f.input :playlist, input_html: {value: ""}, placeholder: "Type the kind of music you want to play with" %>
+  <%= f.submit "Search", class: "btn btn-primary" %>
+<% end %>
