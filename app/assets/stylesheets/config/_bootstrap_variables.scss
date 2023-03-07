@@ -5,14 +5,16 @@
 // 3. You can override them below!
 
 // General style
-$font-family-sans-serif: $body-font;
-$headings-font-family:   $headers-font;
-$body-bg:                $linear-gradient(180deg, rgba($App-dark, 1), rgba($App-light, 1));
+$font-family-sans-serif: $body-light;
+$headings-font-family:   $h1-light;
+$body-bg:                $bg-linear-gradient;
 $font-size-base:         1rem;
 
 // Colors
 $body-color: $Dark-000;
+// $primary:    $blue;
 $success:    $blue;
+// $info:       $yellow;
 $danger:     $red;
 $warning:    $yellow;
 
