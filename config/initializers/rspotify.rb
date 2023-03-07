@@ -1,0 +1,1 @@
+RSpotify.authenticate(SPOTIFY_CLIENT_ID, SPOTIFY_SECRET_ID)
