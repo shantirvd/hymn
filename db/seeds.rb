@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-puts "cleaning database..."
+puts "Cleaning database..."
 User.destroy_all
 
 puts "start"
@@ -35,11 +35,29 @@ puts "#{User.all.count} users created"
 puts "start creating games"
 
 game = Game.new(name: "test game")
+
+#Find a pop playlist
+playlist = RSpotify::Playlist.search('2000').first
+playlist_name = playlist.name
+
+
+game.spotify_playlist_id = playlist.uri
 game.user = user1
 game.save!
 
 puts "#{game.name} created...."
 puts "#{game.user.nickname} is the game master!"
+puts "Associated playlist: #{playlist_name}"
+
+# Find associated tracks
+songs = playlist.tracks
+
+# Iterate on each track to create a song
+songs.each do |song|
+  song = Song.new
+  song.game = game
+  # song.title =
+end
 
 users = User.all.to_a
 users.pop(7)
