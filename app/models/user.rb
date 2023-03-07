@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :users_games, dependent: :destroy
-  has_one :game
+  has_many :games, dependent: :destroy
 end
