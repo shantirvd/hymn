@@ -15,7 +15,9 @@
     <% playlists = RSpotify::Playlist.search("#{params[:query]}").first(8) %>
     <ul>
       <% playlists.each do |playlist| %>
-        <li data-action="click->games#playlist" uri="<%= playlist.uri %>"><%= playlist.name %></li>
+        <li data-action="click->games#playlist" uri="<%= playlist.uri %>"><%= playlist.name %>
+          <img src="<%= playlist.images.first["url"] %>" width="100">
+        </li>
       <% end %>
     </ul>
     <h2>Choose a name for this game</h2>
