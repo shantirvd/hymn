@@ -1,18 +1,16 @@
- <div class="container">
+ <div class="container-home p-3">
 
-    <img src="https://i.ibb.co/6wKKzwH/LOGO.png" alt="LOGO" border="0"></a>
+  <%= image_tag "https://i.ibb.co/6wKKzwH/LOGO.png", alt: "logo" %>
+  <div class="content">
+    <%= image_tag "https://i.ibb.co/qDv8jzV/cover.png", alt: "cover" %>
+  </div>
 
+  <div class="container-title pt-3">
+    <h2> Unleash the harmony of group blind test ✨</h2>
+    <%= link_to "Create a game", "#", class: "btn_pink_lg" %>
+  </div>
 
-
-    <div class="content px-3">
-
-      <img src="https://i.ibb.co/qDv8jzV/cover.png" alt="cover" border="0"></a>
-
-      <h2> Unleash the harmony <span>of group blind test ✨</span></h2>
-
-        <button class="btn_pink_lg flex-grow" type="button">
-        Create a game
-      </button>
-   <div>
-
+  <button class="buzzer" type="button">
+    <%= image_tag "https://res.cloudinary.com/dwvaux61b/image/upload/v1678276007/buzzer_or1qdu.png", alt: "buzzer" %>
+  </button>
 </div>

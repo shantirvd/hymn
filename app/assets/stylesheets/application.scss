@@ -6,6 +6,7 @@
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
+@import "config/utilities";
 
 
 // Your CSS partials
@@ -13,8 +14,6 @@
 @import "pages/index";
 
 body {
-
   background: $bg-linear-gradient;
   min-height: 107vh;
-
-  }
+}
