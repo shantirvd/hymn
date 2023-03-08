@@ -4,5 +4,12 @@ class AnswerPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
-  end
+
+    def new?
+      create?
+    end
+
+    def create?
+      true
+    end
 end
