@@ -13,9 +13,12 @@ class AnswersController < ApplicationController
     @song = Song.find(params[:song_id])
     game = song.game
     user_game = User_game.where(user_id: user, game_id: game)
-    @answer = Answer.new(user_game: user_game, song_id: @song)
+    @answer = Answer.new
+    @answer.user = user
+    @answer.game = game
     authorize @answer
 
+    raise
     if @answer.save
       redirect_to song_answers_path(@song)
     else
