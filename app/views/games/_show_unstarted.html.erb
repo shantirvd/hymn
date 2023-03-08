@@ -1,0 +1,11 @@
+  <h1><%= game.name %></h1>
+    <p>Waiting for participants to join the game...</p>
+    <ul>
+      <% game.users_games.each do |user_game| %>
+        <li>
+          <%= user_game.user.nickname %>
+          <%# <%= cl_image_tag user_game.user.photo.key %>
+        </li>
+      <% end %>
+    </ul>
+    <%= link_to "Start Game", "#" %>
