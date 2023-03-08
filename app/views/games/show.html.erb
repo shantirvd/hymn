@@ -1,8 +1,3 @@
 <% if @game.status == "unstarted"  %>
-  <% if UsersGame.where(user_id: current_user, game_id: @game).exists? %>
-    <%= render "show_unstarted", game: @game %>
-  <% else %>
-    <% UsersGame.new(user_id: current_user, game_id: @game) %>
-    <%= render "show_unstarted", game: @game %>
-  <% end %>
+  <%= render "show_unstarted", game: @game %>
 <% end %>
