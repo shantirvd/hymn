@@ -7,12 +7,10 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 puts "Cleaning database..."
+
 User.destroy_all
 
-puts "start"
-puts "start creating users & games"
-
-puts "start creating users"
+puts "Start creating new users..."
 
 user1 = User.create!(nickname: "Julie", email: "delaruejuulie@gmail.com", password: "123456", avatar: "https://img.freepik.com/free-photo/young-pretty-young-woman-thinks-ideas-concentrated-stands-thoughtful-keeps-hand-face-stands-thoughtful-pose-wears-round-glasses-yellow-sweater_273609-45345.jpg?w=2000&t=st=1678198387~exp=1678198987~hmac=bbbafd295ab8530be809df5e53e2d92d68df38962a682eb6d4670eff69608d44")
 user2 = User.create!(nickname: "Laure", email: "laurematoussowsky@gmail.com", password: "123456", avatar: "https://img.freepik.com/free-photo/portrait-happy-young-female-model-keeps-hands-cheeks-smiles-broadly-shows-white-teeth-feels-glad-expresses-sincere-emotions-wears-green-turtleneck-isolated-purple-studio-background_273609-58593.jpg?w=2000&t=st=1678199038~exp=1678199638~hmac=693764f9835cf178ddbd7fd56f47c7687648d0ce86848be8af04977266995078")
@@ -28,37 +26,27 @@ user13 = User.create!(nickname: "Samuel", email: "samsam@gmail.us", password: "1
 user14 = User.create!(nickname: "Murielle", email: "murielle@gmail.com", password: "123456", avatar: "https://img.freepik.com/free-photo/thoughtful-blonde-middle-aged-woman-ponders-something-keeps-hand-near-face-has-healthy-skin-minimal-makeup-makes-choice-wears-white-blouse-poses-indoor-blank-copy-space-your-promotion_273609-53384.jpg?w=2000&t=st=1678198486~exp=1678199086~hmac=d81317409f195f9972e4b273515ff76253f8a0ed4e1b514baa57972876aa337a")
 user15 = User.create!(nickname: "Til", email: "til@gmail.uk", password: "123456", avatar: "https://img.freepik.com/free-photo/young-brunet-man-wearing-white-t-shirt_273609-21738.jpg?w=2000&t=st=1678198570~exp=1678199170~hmac=9c38b690d54754de119deb08b446926e240f029342b91151eb19f63cc3785bd3")
 
-
-puts "finish seeds users"
 puts "#{User.all.count} users created"
-
-puts "start creating games"
+puts "-------------------------------------------------------------------------"
+puts "Start creating a game..."
 
 game = Game.new(name: "test game")
 
-#Find a pop playlist
-playlist = RSpotify::Playlist.search('2000').first
-playlist_name = playlist.name
-
-
+puts "Selecting a playlist on spotify..."
+playlist = RSpotify::Playlist.search('exception française').first
 game.spotify_playlist_id = playlist.uri
+
+puts "Assigning a game master..."
 game.user = user1
 game.save!
 
-puts "#{game.name} created...."
+puts "#{game.name} created"
 puts "#{game.user.nickname} is the game master!"
-puts "Associated playlist: #{playlist_name}"
+puts "Associated playlist: #{playlist.name}"
+puts "-------------------------------------------------------------------------"
 
-# Find associated tracks
-songs = playlist.tracks
 
-# Iterate on each track to create a song
-songs.each do |song|
-  song = Song.new
-  song.game = game
-  # song.title =
-end
-
+puts "Start creating a participants (users_games)..."
 users = User.all.to_a
 users.pop(7)
 users.delete_at(0)
@@ -71,8 +59,38 @@ users.each do |user|
   puts "#{users_game.user.nickname} plays at #{game.name}"
 end
 
-puts "saved seeds game"
+puts "#{UsersGame.all.count} participants created"
+puts "-------------------------------------------------------------------------"
 
-puts "finish seeds games"
+# Find associated tracks
+puts "Finding songs from #{playlist.name}..."
+tracks = playlist.tracks
 
-puts "ALL DONE"
+# Iterate on each track to create a song
+puts "Saving them in song table.."
+tracks.each do |track|
+  song = Song.new
+  song.game = game
+  song.title = track.name
+  song.album = track.album.name
+  song.artist = track.artists.first.name
+  song.spotify_track_id = track.uri
+  song.save!
+end
+
+puts "#{Song.all.count} songs created"
+puts "-------------------------------------------------------------------------"
+
+# Generate Fake Answers
+puts "Start generating fake aswers for first song (Juliette Armanet - Qu'importe)"
+5.times do
+  answer = Answer.new
+  users_games = UsersGame.all.to_a
+  answer.users_game = users_games.sample
+  answer.time = rand(2.0..5.0)
+  answer.song = Song.find_by(spotify_track_id: "spotify:track:4CAJWoy2MpfDFHirq2ekwB")
+  answer.save
+end
+puts "#{Answer.all.count} answers created"
+
+puts "All Done!"
