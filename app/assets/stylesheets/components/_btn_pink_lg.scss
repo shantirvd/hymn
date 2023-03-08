@@ -3,10 +3,17 @@ background-color: $Brand-900;
 border-radius: 10px;
 box-shadow: (0px 6px 18px rgba(11, 8, 42, 0.13));
 padding: 20px 100px;
+border: none;
+position: absolute;
+width: 329px;
+height: 50px;
+left: 38px;
+top: 735px;
 
 // text
-font-size: 1,25rem;
+font-size: 19px;
 color: #F4FAF5;
 font-weight: 500;
-line-height: 120%;
+line-height: 50%;
+font-family: 'Nunito Sans';
 }
