@@ -11,10 +11,9 @@ require "open-uri"
 puts "cleaning database..."
 User.destroy_all
 
-puts "start"
-puts "start creating users & games"
+User.destroy_all
 
-puts "start creating users"
+puts "Start creating new users..."
 
 user1 = User.create!(nickname: "Julie", email: "delaruejuulie@gmail.com", password: "123456")
 file = URI.open("https://res.cloudinary.com/dwvaux61b/image/upload/ar_1:1,b_rgb:262c35,bo_1px_solid_rgb:ffffff,c_crop,g_auto,r_max,w_1000/v1678206884/waist-up-shot-relaxed-happy-young-woman-makes-zen-gesture-meditates-indoor-breathes-deeply-practices-yoga-feel-relaxed-wears-spectacles-casual-jumper-isolated-pink-background_273609-58084_wsqicu.jpg")
@@ -26,7 +25,7 @@ file = URI.open("https://res.cloudinary.com/dwvaux61b/image/upload/ar_1:1,b_rgb:
 user2.photo.attach(io: file, filename: "laure_avatar.png", content_type: "image/png")
 
 
-user3 = User.create!(nickname: "Shanti", email: "shanti.ravdjee@gmail.gmail", password: "123456")
+user3 = User.create!(nickname: "Shanti", email: "shanti.ravdjee@gmail.com", password: "123456")
 file = URI.open("https://res.cloudinary.com/dwvaux61b/image/upload/ar_1:1,b_rgb:262c35,bo_1px_solid_rgb:ff0000,c_crop,g_auto,r_max,w_1000/v1678206502/young-pretty-young-woman-thinks-ideas-concentrated-stands-thoughtful-keeps-hand-face-stands-thoughtful-pose-wears-round-glasses-yellow-sweater_273609-45345_ptsjiw.jpg")
 user3.photo.attach(io: file, filename: "shanti_avatar.png", content_type: "image/png")
 
@@ -73,19 +72,27 @@ user13 = User.create!(nickname: "Edouard", email: "til@gmail.uk", password: "123
 file = URI.open("https://res.cloudinary.com/dwvaux61b/image/upload/ar_1:1,b_rgb:262c35,bo_1px_solid_rgb:ffffff,c_crop,g_auto,r_max,w_1000/v1678208643/young-brunet-man-wearing-white-t-shirt_273609-21738_oyyhnr.jpg")
 user13.photo.attach(io: file, filename: "edouard_avatar.png", content_type: "image/png")
 
-
-puts "finish seeds users"
 puts "#{User.all.count} users created"
-
-puts "start creating games"
+puts "-------------------------------------------------------------------------"
+puts "Start creating a game..."
 
 game = Game.new(name: "test game")
+
+puts "Selecting a playlist on spotify..."
+playlist = RSpotify::Playlist.search('exception française').first
+game.spotify_playlist_id = playlist.uri
+
+puts "Assigning a game master..."
 game.user = user1
 game.save!
 
-puts "#{game.name} created...."
+puts "#{game.name} created"
 puts "#{game.user.nickname} is the game master!"
+puts "Associated playlist: #{playlist.name}"
+puts "-------------------------------------------------------------------------"
 
+
+puts "Start creating a participants (users_games)..."
 users = User.all.to_a
 users.pop(7)
 users.delete_at(0)
@@ -98,8 +105,38 @@ users.each do |user|
   puts "#{users_game.user.nickname} plays at #{game.name}"
 end
 
-puts "saved seeds game"
+puts "#{UsersGame.all.count} participants created"
+puts "-------------------------------------------------------------------------"
 
-puts "finish seeds games"
+# Find associated tracks
+puts "Finding songs from #{playlist.name}..."
+tracks = playlist.tracks
 
-puts "ALL DONE"
+# Iterate on each track to create a song
+puts "Saving them in song table.."
+tracks.each do |track|
+  song = Song.new
+  song.game = game
+  song.title = track.name
+  song.album = track.album.name
+  song.artist = track.artists.first.name
+  song.spotify_track_id = track.uri
+  song.save!
+end
+
+puts "#{Song.all.count} songs created"
+puts "-------------------------------------------------------------------------"
+
+# Generate Fake Answers
+puts "Start generating fake aswers for first song (Juliette Armanet - Qu'importe)"
+5.times do
+  answer = Answer.new
+  users_games = UsersGame.all.to_a
+  answer.users_game = users_games.sample
+  answer.time = rand(2.0..5.0)
+  answer.song = Song.find_by(spotify_track_id: "spotify:track:4CAJWoy2MpfDFHirq2ekwB")
+  answer.save
+end
+puts "#{Answer.all.count} answers created"
+
+puts "All Done!"
