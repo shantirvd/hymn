@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
   has_many :users_games, dependent: :destroy
   has_many :games, dependent: :destroy
+
+  has_one_attached :photo
+
 end
