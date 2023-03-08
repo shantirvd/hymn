@@ -1,7 +1,31 @@
 <h1>Create a new game</h1>
 <h2>Select a playlist</h2>
 
-<%= simple_form_for :search, url: new_game_path, method: "GET", html: { class: 'form-inline' } do |f| %>
-  <%= f.input :playlist, input_html: {value: ""}, placeholder: "Type the kind of music you want to play with" %>
-  <%= f.submit "Search", class: "btn btn-primary" %>
+<%= form_with url: new_game_path, method: :get, class: "form-inline d-flex" do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Type the kind of music you want to play with"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
 <% end %>
+
+<div data-controller="games">
+  <% if params[:query].present? %>
+    <% playlists = RSpotify::Playlist.search("#{params[:query]}").first(8) %>
+    <ul>
+      <% playlists.each do |playlist| %>
+        <li data-action="click->games#playlist" uri="<%= playlist.uri %>"><%= playlist.name %></li>
+      <% end %>
+    </ul>
+    <h2>Choose a name for this game</h2>
+    <%= simple_form_for(@game) do |f| %>
+      <%= f.input :name %>
+      <%= f.input :spotify_playlist_id, as: :hidden, input_html: {
+        value: "some value",
+        data: { games_target: "input" }
+        } %>
+      <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+  <% end %>
+</div>

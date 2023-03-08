@@ -8,10 +8,16 @@ class GamesController < ApplicationController
     @game = Game.new(params_game)
     @game.user = current_user
     authorize @game
-    if @drag.save
+    if @game.save
       redirect_to game_path(@game)
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def params_game
+    params.require(:game).permit(:name, :spotify_playlist_id)
   end
 end
