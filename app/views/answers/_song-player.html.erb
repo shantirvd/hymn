@@ -3,7 +3,7 @@
   window.onSpotifyIframeApiReady = (IFrameAPI) => {
     let element = document.getElementById('embed-iframe');
     let options = {
-        uri: 'spotify:track:4CAJWoy2MpfDFHirq2ekwB'
+        uri: '<%= @song.spotify_track_id %>'
       };
     let callback = (EmbedController) => {};
     IFrameAPI.createController(element, options, callback);
