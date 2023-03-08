@@ -18,8 +18,9 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     authorize @game
+    raise
 
-    unless current_user == @game.user || UsersGame.where(user_id: current_user, game_id: @game).exists?
+    unless current_user == @game.user || UsersGame.find_by(user: current_user, game: @game).exists?
       users_game = UsersGame.new
       users_game.game = @game
       users_game.user = current_user
