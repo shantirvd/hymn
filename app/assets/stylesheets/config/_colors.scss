@@ -23,7 +23,7 @@ $Dark-000: #F4FAF5;
 $App-dark: #23042E;
 $App-light: #6D2785;
 
-$bg-linear-gradient: (180deg, rgba($App-dark, 1), rgba($App-light, 1));
+$bg-linear-gradient: linear-gradient(180deg, rgba($App-dark, 1), rgba($App-light, 1));
 
 // Trigger colors
 $red: #FF5C52;
