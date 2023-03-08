@@ -1,5 +1,4 @@
 // Specific CSS for your home-page
-
 #buzzer {
   flex-direction: row;
   justify-content: center;
@@ -87,4 +86,23 @@
   0% { background-position: 0 0; }
   50% { background-position: 400% 0; }
   100% { background-position: 0 0; }
+}
+
+.content{
+
+margin-top: 171px;
+
+
+}
+
+
+h2{
+
+margin-top: 138px;
+font-family: 'Nunito Sans', sans-serif;
+font-weight: bold;
+line-height: 120%;
+font-size: 25px;
+color: #c0bdc1;
+
 }
