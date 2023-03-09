@@ -4,9 +4,12 @@
   <ul>
     <% @answers.each do |answer| %>
         <li>
-          <%= answer.users_game.user.nickname%>
-          <%= answer.time %>
-          <%= answer.result_status %>
+          <% if answer.result_status == "pending" %>
+            <%= answer.id%>
+            <%= answer.users_game.user.nickname%>
+            <%= answer.time %>
+            <%= answer.result_status %>
+            <% end %>
         </li>
     <% end %>
   </ul>
