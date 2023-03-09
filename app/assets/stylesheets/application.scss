@@ -16,4 +16,6 @@
 body {
   background: $bg-linear-gradient;
   min-height: 107vh;
+  min-width: none;
+  padding: 30px 30px;
 }

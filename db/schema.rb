@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_07_155754) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_08_144340) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_155754) do
 
   create_table "answers", force: :cascade do |t|
     t.integer "time"
-    t.string "result_status"
+    t.string "result_status", default: "pending"
     t.bigint "users_game_id", null: false
     t.bigint "song_id", null: false
     t.datetime "created_at", null: false
@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_155754) do
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.string "spotify_playlist_id"
-    t.string "status"
+    t.string "status", default: "unstarted"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

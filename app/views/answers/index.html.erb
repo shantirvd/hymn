@@ -1,0 +1,16 @@
+<div class="container">
+<%= render "song-player", song: @song%>
+  <h1>Buzzer Order</h1>
+  <ul>
+    <% @answers.each do |answer| %>
+        <li>
+          <% if answer.result_status == "pending" %>
+            <%= answer.id%>
+            <%= answer.users_game.user.nickname%>
+            <%= answer.time %>
+            <%= answer.result_status %>
+            <% end %>
+        </li>
+    <% end %>
+  </ul>
+</div>

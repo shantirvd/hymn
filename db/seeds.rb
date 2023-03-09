@@ -84,7 +84,7 @@ game.spotify_playlist_id = playlist.uri
 
 puts "Assigning a game master..."
 game.user = user1
-game.save!
+game.save
 
 puts "#{game.name} created"
 puts "#{game.user.nickname} is the game master!"
@@ -94,7 +94,7 @@ puts "-------------------------------------------------------------------------"
 
 puts "Start creating a participants (users_games)..."
 users = User.all.to_a
-users.pop(7)
+# users.pop(7)
 users.delete_at(0)
 
 users.each do |user|
