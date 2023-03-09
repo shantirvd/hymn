@@ -8,4 +8,9 @@
         </li>
       <% end %>
     </ul>
-    <%= link_to "Start Game", "#" %>
+    <%# <%= link_to "Start Game", "#" %>
+    <% if current_user == game.user %>
+      <%= link_to "Start Game", song_answers_path(game.songs.first) %>
+      <% else %>
+      <%= link_to "Start Game", new_song_answer_path(game.songs.first) %>
+    <% end %>
