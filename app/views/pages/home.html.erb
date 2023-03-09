@@ -1,13 +1,14 @@
- <div class="container-home">
+
+<div class="container-home">
 
   <%= image_tag "https://i.ibb.co/6wKKzwH/LOGO.png", alt: "logo" %>
-  <div class="content">
-    <%= image_tag "https://i.ibb.co/qDv8jzV/cover.png", alt: "cover" %>
-  </div>
+  <%= image_tag "https://i.ibb.co/qDv8jzV/cover.png", id:"cover_home", alt: "cover" %>
 
   <div class="container-title pt-3">
     <h2> Unleash the harmony of group blind test ✨</h2>
     <%= link_to "Create a game", "#", class: "btn_pink_lg" %>
   </div>
 
-<%= link_to 'Logout', destroy_user_session_path, data:{turbo_method: :delete} %>
+</div>
+
+<%#= link_to 'Logout', destroy_user_session_path, data:{turbo_method: :delete} %>

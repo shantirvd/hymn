@@ -1,5 +1,20 @@
 // Specific CSS for your home-page
 
-.content{
-  padding-top: 170px;
+#cover_home {
+  padding-top: 120px;
+  width: 100%;
+  transform: scale(1.2);
+}
+
+.container-title {
+
+  h2 {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    padding-right: 70px;
+    font-size: 2rem;
+    line-height: 110%;
+    font-weight: 500;
+ }
+
 }
