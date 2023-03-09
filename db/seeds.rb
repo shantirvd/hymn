@@ -139,4 +139,13 @@ puts "Start generating fake aswers for first song (Juliette Armanet - Qu'importe
 end
 puts "#{Answer.all.count} answers created"
 
+# Generate Fake scores
+5.times do
+  users_games = UsersGame.all.to_a
+  user_game = users_games.sample
+  user_game.score = rand(0.0..50.0).truncate(2)
+  user_game.save
+end
+puts "5 scores generated"
+
 puts "All Done!"
