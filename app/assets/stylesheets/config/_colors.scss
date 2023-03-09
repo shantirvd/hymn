@@ -3,27 +3,27 @@
 // For example:
 
 // Brand colors
-$Brand-900: #C147E9;
-$Brand-700: #DB8BF6;
-$Brand-500: #E4A8F8;
-$Brand-300: #EDC5FA;
-$Brand-100: #F6E2FD;
-$Brand-100: #FDF8FE;
+$brand-900: #C147E9;
+$brand-700: #DB8BF6;
+$brand-500: #E4A8F8;
+$brand-300: #EDC5FA;
+$brand-100: #F6E2FD;
+$brand-100: #FDF8FE;
 
 
 // Dark colors
-$Dark-900: #2C242F;
-$Dark-700: #423A44;
-$Dark-500: #565058;
-$Dark-300: #807B82;
-$Dark-100: #C0BDC1;
-$Dark-000: #F4FAF5;
+$dark-900: #2C242F;
+$dark-700: #423A44;
+$dark-500: #565058;
+$dark-300: #807B82;
+$dark-100: #C0BDC1;
+$dark-000: #F4FAF5;
 
 // App colors
-$App-dark: #23042E;
-$App-light: #6D2785;
+$app-dark: #23042E;
+$app-light: #6D2785;
 
-$bg-linear-gradient: linear-gradient(180deg, rgba($App-dark, 1), rgba($App-light, 1));
+$bg-linear-gradient: linear-gradient(180deg, rgba($app-dark, 1), rgba($app-light, 1));
 
 // Trigger colors
 $red: #FF5C52;
