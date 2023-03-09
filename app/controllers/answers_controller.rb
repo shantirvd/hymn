@@ -3,8 +3,8 @@ class AnswersController < ApplicationController
 
   def index
     @song = Song.find(params[:song_id])
-    @answers = policy_scope(Answer)
-    @answers = Answer.where(song: @song)
+    @answers = policy_scope(Answer) # Confirmer le scope avec un TA
+    @answers = Answer.where(song: @song).order(time: :asc)
   end
 
   def new
@@ -29,7 +29,6 @@ class AnswersController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
 
   private
 
