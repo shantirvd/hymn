@@ -84,7 +84,7 @@ game.spotify_playlist_id = playlist.uri
 
 puts "Assigning a game master..."
 game.user = user1
-game.save!
+game.save
 
 puts "#{game.name} created"
 puts "#{game.user.nickname} is the game master!"
