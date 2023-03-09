@@ -1,24 +1,28 @@
 class AnswersController < ApplicationController
   skip_before_action :authenticate_user!, only: :login
 
+  def index
+    @song = Song.find(params[:song_id])
+    @answers = policy_scope(Answer)
+    @answers = Answer.where(song: @song)
+  end
 
   def new
     @answer = Answer.new
-    @song = Song.find(params[:song_id])
     authorize @answer
+    @song = Song.find(params[:song_id])
   end
 
   def create
-    user = current_user
     @song = Song.find(params[:song_id])
-    game = song.game
-    user_game = User_game.where(user_id: user, game_id: game)
+    user = current_user
+    game = @song.game
+    users_game = UsersGame.find_by(user: user, game: game)
     @answer = Answer.new
-    @answer.user = user
-    @answer.game = game
+    @answer.users_game = users_game
+    @answer.song = @song
     authorize @answer
 
-    raise
     if @answer.save
       redirect_to song_answers_path(@song)
     else

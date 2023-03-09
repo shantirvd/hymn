@@ -94,7 +94,7 @@ puts "-------------------------------------------------------------------------"
 
 puts "Start creating a participants (users_games)..."
 users = User.all.to_a
-users.pop(7)
+# users.pop(7)
 users.delete_at(0)
 
 users.each do |user|

@@ -5,7 +5,7 @@ class AnswerPolicy < ApplicationPolicy
       scope.all
     end
   end
-
+  
   def new?
     create?
   end

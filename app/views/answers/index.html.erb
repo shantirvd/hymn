@@ -1,0 +1,13 @@
+<div class="container">
+<%= render "song-player", song: @song%>
+  <h1>Buzzer Order</h1>
+  <ul>
+    <% @answers.each do |answer| %>
+        <li>
+          <%= answer.users_game.user.nickname%>
+          <%= answer.time %>
+          <%= answer.result_status %>
+        </li>
+    <% end %>
+  </ul>
+</div>
