@@ -8,7 +8,10 @@
     </li>
   <% end %>
 </ul>
-<%= link_to "Start Game", "#" %>
-
-<p>Share this link with your friends!</p>
-<p>https://hymn-game.osc-fr1.scalingo.io/games/<%= game.id %></p>
+<% if game.user == current_user %>
+  <%= link_to "Start Game", "#" %>
+  <p>Share this link with your friends!</p>
+  <p>https://hymn-game.osc-fr1.scalingo.io/games/<%= game.id %></p>
+<% else %>
+  <p> Please wait for the game master to start the game! You will be soon redirected.</p>
+<% end %>
