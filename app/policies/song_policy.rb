@@ -5,4 +5,5 @@ class SongPolicy < ApplicationPolicy
     #   scope.all
     # end
   end
+
 end

@@ -18,6 +18,12 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     authorize @game
+    unless current_user == @game.user || !UsersGame.find_by(user: current_user, game: @game).nil?
+      users_game = UsersGame.new
+      users_game.game = @game
+      users_game.user = current_user
+      users_game.save!
+    end
   end
 
   private
