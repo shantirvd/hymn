@@ -56,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_08_144340) do
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.string "spotify_playlist_id"
-    t.string "status"
+    t.string "status", default: "unstarted"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
