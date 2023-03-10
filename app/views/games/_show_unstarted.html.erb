@@ -15,6 +15,6 @@
   <p>Share this link with your friends!</p>
   <p>https://hymn-game.osc-fr1.scalingo.io/games/<%= game.id %></p>
 <% else %>
-  <%= link_to "Start Game", new_song_answer_path(game.songs.first) %>
+  <%= link_to "Start Game", new_song_answer_path(game.songs.first, params: { status: 'ongoing' }) %>
   <p> Please wait for the game master to start the game! You will be soon redirected.</p>
 <% end %>

@@ -45,6 +45,7 @@ class GamesController < ApplicationController
     end
 
     @game.finished! if params[:status] == "finished"
+
   end
 
   private

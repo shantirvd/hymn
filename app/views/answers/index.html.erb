@@ -21,6 +21,12 @@
         </li>
     <% end %>
   </ul>
+
+<% if current_user == @song.game.user %>
   <%= link_to "Next Song", song_answers_path(@song.id + 1), data: {turbo: false} %>
   <%= link_to "End Game", game_path(@song.game, params: { status: 'finished' }) %>
+<% else %>
+  <%= link_to "Next Song", "/songs/#{@song.id + 1}/answers/new" %>
+<% end %>
+
 </div>
