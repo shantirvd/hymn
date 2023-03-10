@@ -21,5 +21,5 @@
         </li>
     <% end %>
   </ul>
-  <%= link_to "Next Song", song_answers_path(@song.id + 1) %> <%#data: {turbolinks: false}%>
+  <%= link_to "Next Song", song_answers_path(@song.id + 1), data: {turbo: false} %>
 </div>
