@@ -1,5 +1,5 @@
 .buzzer {
-
+  display: inline-block
   width: 270px;
   height: 270px;
   border: none;
@@ -10,6 +10,7 @@
   z-index: 0;
   background-color: transparent;
   border-radius: 100%;
+  img{width: 100%;}
 }
 
 .buzzer:before {

@@ -4,14 +4,8 @@
 
 import { application } from "./application"
 
-import GameStatusController from "./game_status_controller"
-application.register("game-status", GameStatusController)
-
 import GamesController from "./games_controller"
 application.register("games", GamesController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
-
-import SpotifyController from "./spotify_controller"
-application.register("spotify", SpotifyController)
