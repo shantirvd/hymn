@@ -31,6 +31,20 @@ class AnswersController < ApplicationController
     end
   end
 
+  def accept
+    @answer = Answer.find(params[:answer_id])
+    authorize @answer
+    @answer.update(result_status: 'accepted')
+    redirect_to song_answers_path
+  end
+
+  def refuse
+    @answer = Answer.find(params[:answer_id])
+    authorize @answer
+    @answer.update(result_status: 'refused')
+    redirect_to song_answers_path
+  end
+
   private
 
   def anwser_params
