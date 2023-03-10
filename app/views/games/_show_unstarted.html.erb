@@ -9,10 +9,9 @@
   <% end %>
 </ul>
 
-<% if game.user == current_user %>
 
+<% if game.user == current_user %>
   <%= link_to 'Start Game', song_answers_path(game.songs.first) %>
-  <% game.status = "unstarted" %>
   <p>Share this link with your friends!</p>
   <p>https://hymn-game.osc-fr1.scalingo.io/games/<%= game.id %></p>
 <% else %>
