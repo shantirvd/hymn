@@ -19,3 +19,17 @@ body {
   min-width: none;
   padding: 30px 30px;
 }
+
+.navbar-lewagon {
+  justify-content: space-between;
+  background: #1A0222;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 30px;
+}
+
