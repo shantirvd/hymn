@@ -6,4 +6,12 @@ class Game < ApplicationRecord
   validates :status, presence: true, inclusion: {
     in: %w[unstarted ongoing finished]
   }
+
+  def ongoing!
+    self.update(status: "ongoing")
+  end
+
+  def finished!
+    self.update(status: "finished")
+  end
 end

@@ -22,4 +22,5 @@
     <% end %>
   </ul>
   <%= link_to "Next Song", song_answers_path(@song.id + 1), data: {turbo: false} %>
+  <%= link_to "End Game", game_path(@song.game, params: { status: 'finished' }) %>
 </div>
