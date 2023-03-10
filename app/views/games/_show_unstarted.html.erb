@@ -1,20 +1,35 @@
-<h1><%= game.name %></h1>
-<p>Waiting for participants to join the game...</p>
-<ul>
-  <% game.users_games.each do |user_game| %>
-    <li>
-      <%= user_game.user.nickname %>
-      <%= cl_image_tag user_game.user.photo.key %>
-    </li>
-  <% end %>
-</ul>
-<% if game.user == current_user %>
+<div class="container-games-show">
 
-  <%= link_to 'Start Game', game_unstarted_path(@game), method: :post, data: { controller: 'game-status' }, data_action: "click->game-status#ongoing"> %>
+  <%= image_tag "https://i.ibb.co/6wKKzwH/LOGO.png", alt: "logo" %>
 
-  <p>Share this link with your friends!</p>
-  <p>https://hymn-game.osc-fr1.scalingo.io/games/<%= game.id %></p>
-<% else %>
-  <%= link_to "Start Game", new_song_answer_path(game.songs.first) %>
-  <p> Please wait for the game master to start the game! You will be soon redirected.</p>
-<% end %>
+  <h1 class="pt-5 pb-2"><%= game.name.capitalize %></h1>
+  <p>Waiting for participants to join the game...</p>
+
+  <ul>
+    <% game.users_games.each do |user_game| %>
+      <li class="<%= current_user = user_game.user ? 'my_card' : 'player_card' %>" >
+        <%= cl_image_tag user_game.user.photo.key, class:"profil_round" %>
+        <p class="<%= current_user = user_game.user ? 'my_card_info' : 'player_card_info' %>" ><%= user_game.user.nickname %></p>
+      </li>
+    <% end %>
+  </ul>
+  <% if game.user == current_user %>
+
+
+
+  <h2>Share this link with your friends!</h2>
+
+  <div class="link_join_party d-flex justify-content-between">
+    <i class="fa-solid fa-link"></i>
+    <p>https://hymn-game.osc-fr1.scalingo.io/games/<%= game.id %></p>
+  </div>
+
+  <div class="pt-3">
+    <%= link_to 'Start Game', game_path(@game), method: :post,  class: "btn_pink_lg" %>
+  </div>
+
+    <% else %>
+      <%= link_to "Start Game", new_song_answer_path(game.songs.first), class: "btn_pink_lg" %>
+      <p class="link_join_party"> Please wait for the game master to start the game! You will be soon redirected.</p>
+    <% end %>
+</div>

@@ -1,15 +1,23 @@
-<h1>Game Ranking</h1>
-<p>And the winner is...</p>
+<div class="container-games-show">
 
-<% sorted_users_games = game.users_games.order(score: :desc) %>
+  <%= image_tag "https://i.ibb.co/6wKKzwH/LOGO.png", alt: "logo" %>
 
-<% sorted_users_games.each do |user_game| %>
-  <li>
-    <%= user_game.user.nickname %>
-    <%= cl_image_tag user_game.user.photo.key %>
-    <%= user_game.score %>
-  </li>
-<% end %>
+  <h1 class="pt-5 pb-2">Game Ranking</h1>
+  <p>And the winner is...</p>
 
-<%= link_to "Start a new Game", "#" %>
-<p>If you don't want to be the game master, just wait for a link to join a game!</p>
+  <% sorted_users_games = game.users_games.order(score: :desc) %>
+
+  <% sorted_users_games.each do |user_game| %>
+    <li class="<%= current_user = user_game.user ? 'my_card' : 'player_card' %>">
+       <%= cl_image_tag user_game.user.photo.key, class:"profil_round" %>
+      <div class="d-flex justify-content-between">
+        <p class="<%= current_user = user_game.user ? 'my_card_info' : 'player_card_info' %>" ><%= user_game.user.nickname %></p>
+        <p><strong><%= user_game.score %></strong></p>
+      </div>
+    </li>
+  <% end %>
+
+  <%= link_to "Start a new Game", "games/new", class: "btn_pink_lg" %>
+  <p class="link_join_party">If you don't want to be the game master, just wait for a link to join a game!</p>
+
+  </div>
