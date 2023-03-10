@@ -14,4 +14,8 @@ Rails.application.routes.draw do
   resources :songs, only: %i[show] do
     resources :answers, only: %i[new create index]
   end
+
+  get 'components', to: 'pages#components', as: 'components'
+  get 'components_gradient', to: 'pages#components_gradient', as: 'components_gradient'
+
 end

@@ -1,43 +1,20 @@
 // Specific CSS for your home-page
 
-.buzzer {
-  border: none;
-  outline: none;
-  color: #fff;
-  cursor: pointer;
-  position: relative;
-  z-index: 0;
-  background-color: transparent;
-  border-radius: 100%;
+#cover_home {
+  padding-top: 120px;
+  width: 100%;
+  transform: scale(1.2);
 }
 
-.buzzer:before {
-  content: '';
-  background: linear-gradient(45deg, #FF5C52, #ff7300, #F7BC45, #00ffd5, #002bff, #7a00ff, #ff00c8, #FF5C52);
-  position: absolute;
-  top: -8px;
-  left:-4px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 10px);
-  height: calc(100% + 15px);
-  animation: glowing 20s linear infinite;
-  opacity: 1;
-  transition: opacity .3s ease-in-out;
-  border-radius: 100%;
-}
+.container-title {
 
-.buzzer:focus:before {
-  background: linear-gradient(45deg, #002bff, #ff00c8);
-}
+  h2 {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    padding-right: 70px;
+    font-size: 2rem;
+    line-height: 110%;
+    font-weight: 500;
+ }
 
-@keyframes glowing {
-  0% { background-position: 0 0; }
-  50% { background-position: 400% 0; }
-  100% { background-position: 0 0; }
-}
-
-.content{
-  padding-top: 170px;
 }

@@ -1,0 +1,20 @@
+<h1><%= game.name %></h1>
+<p>Waiting for participants to join the game...</p>
+<ul>
+  <% game.users_games.each do |user_game| %>
+    <li>
+      <%= user_game.user.nickname %>
+      <%= cl_image_tag user_game.user.photo.key %>
+    </li>
+  <% end %>
+</ul>
+<% if game.user == current_user %>
+
+  <%= link_to 'Start Game', game_unstarted_path(@game), method: :post, data: { controller: 'game-status' }, data_action: "click->game-status#ongoing"> %>
+
+  <p>Share this link with your friends!</p>
+  <p>https://hymn-game.osc-fr1.scalingo.io/games/<%= game.id %></p>
+<% else %>
+  <%= link_to "Start Game", new_song_answer_path(game.songs.first) %>
+  <p> Please wait for the game master to start the game! You will be soon redirected.</p>
+<% end %>

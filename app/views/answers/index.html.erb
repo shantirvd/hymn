@@ -1,0 +1,19 @@
+<div class="container">
+<% if current_user == @song.game.user %>
+  <%= render "song-player", song: @song%>
+<% end %>
+  <h1>Buzzer Order</h1>
+  <ul>
+    <% @answers.each do |answer| %>
+        <li>
+          <% if answer.result_status == "pending" %>
+            <%= answer.id%>
+            <%= answer.users_game.user.nickname%>
+            <%= answer.time %>
+            <%= answer.result_status %>
+          <% end %>
+        </li>
+    <% end %>
+  </ul>
+  <%= link_to "Next Song", "/songs/#{@song.id + 1}/answers" %>
+</div>

@@ -84,7 +84,7 @@ game.spotify_playlist_id = playlist.uri
 
 puts "Assigning a game master..."
 game.user = user1
-game.save!
+game.save
 
 puts "#{game.name} created"
 puts "#{game.user.nickname} is the game master!"
@@ -94,7 +94,7 @@ puts "-------------------------------------------------------------------------"
 
 puts "Start creating a participants (users_games)..."
 users = User.all.to_a
-users.pop(7)
+# users.pop(7)
 users.delete_at(0)
 
 users.each do |user|
@@ -138,5 +138,14 @@ puts "Start generating fake aswers for first song (Juliette Armanet - Qu'importe
   answer.save
 end
 puts "#{Answer.all.count} answers created"
+
+# Generate Fake scores
+5.times do
+  users_games = UsersGame.all.to_a
+  user_game = users_games.sample
+  user_game.score = rand(0.0..50.0).truncate(2)
+  user_game.save
+end
+puts "5 scores generated"
 
 puts "All Done!"
