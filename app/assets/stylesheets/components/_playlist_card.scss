@@ -10,8 +10,9 @@
 
 
   > img {
-    width: 100%;
-    height: fit-content;
+    max-height: 17vh;
+    object-fit: contain;
+    // height: fit-content;
     border-radius: 10px;
   }
 
