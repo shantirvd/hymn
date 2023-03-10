@@ -9,7 +9,7 @@
   <% end %>
 </ul>
 <% if game.user == current_user %>
-  <%= link_to 'Start Game', game_unstarted_path(@game), method: :post, data: { controller: 'game-status' } %>
+  <%= link_to 'Start Game', game_unstarted_path(@game), method: :post, data: { controller: 'game-status' }, data_action: "click->game-status#ongoing"> %>
   <p>Share this link with your friends!</p>
   <p>https://hymn-game.osc-fr1.scalingo.io/games/<%= game.id %></p>
 <% else %>
