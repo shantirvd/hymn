@@ -11,10 +11,11 @@ Rails.application.routes.draw do
     resources :answers, only: %i[update]
   end
 
+  patch "/songs/:song_id/answers/:answer_id/accept", to: "answers#accept", as: :accept
+  patch "/songs/:song_id/answers/:answer_id/accept", to: "answers#refuse", as: :refuse
+
   resources :songs, only: %i[show] do
     resources :answers, only: %i[new create index]
-    patch "/songs/:song_id/accept", to: "answers#accept", as: :accept
-    patch "/songs/:song_id/accept", to: "answers#refuse", as: :refuse
   end
 
   get 'components', to: 'pages#components', as: 'components'
