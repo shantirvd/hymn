@@ -13,6 +13,23 @@ class GamesController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+    # Find corresponding songs
+    playlist_uri = @game.spotify_playlist_id
+    # Decomposing the URI
+    spotify_playlist_id = playlist_uri[17..-1]
+    # Spotify API call for all tracks
+    spotify_playlist = RSpotify::Playlist.find("playlist", "#{spotify_playlist_id}")
+    tracks = spotify_playlist.tracks
+    # Create associated songs
+    tracks.each do |track|
+      song = Song.new
+      song.game = @game
+      song.title = track.name
+      song.album = track.album.name
+      song.artist = track.artists.first.name
+      song.spotify_track_id = track.uri
+      song.save!
+    end
   end
 
   def show
