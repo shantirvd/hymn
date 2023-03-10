@@ -6,7 +6,6 @@ class AnswersController < ApplicationController
     @answers = policy_scope(Answer) # Confirmer le scope avec un TA
     @answers = Answer.where(song: @song).order(time: :asc)
     @song.game.ongoing! if params[:status] == "ongoing"
-    raise
   end
 
   def new
