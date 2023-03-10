@@ -8,13 +8,13 @@
   <% sorted_users_games = game.users_games.order(score: :desc) %>
 
   <% sorted_users_games.each do |user_game| %>
-    <li class="<%= current_user = user_game.user ? 'my_card' : 'player_card' %>">
+    <div class="<%= current_user = user_game.user ? 'my_card' : 'player_card' %>">
        <%= cl_image_tag user_game.user.photo.key, class:"profil_round" %>
-      <div class="d-flex justify-content-between">
-        <p class="<%= current_user = user_game.user ? 'my_card_info' : 'player_card_info' %>" ><%= user_game.user.nickname %></p>
+      <div class="d-flex justify-content-between <%= current_user = user_game.user ? 'my_card_info' : 'player_card_info' %>">
+        <p><%= user_game.user.nickname %></p>
         <p><strong><%= user_game.score %></strong></p>
       </div>
-    </li>
+    </div>
   <% end %>
 
   <%= link_to "Start a new Game", "games/new", class: "btn_pink_lg" %>

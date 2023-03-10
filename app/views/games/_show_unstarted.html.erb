@@ -5,15 +5,17 @@
   <h1 class="pt-5 pb-2"><%= game.name.capitalize %></h1>
   <p>Waiting for participants to join the game...</p>
 
-  <ul>
+  <div>
     <% game.users_games.each do |user_game| %>
-      <li class="<%= current_user = user_game.user ? 'my_card' : 'player_card' %>" >
+      <div class="<%= current_user = user_game.user ? 'my_card' : 'player_card' %>" >
         <%= cl_image_tag user_game.user.photo.key, class:"profil_round" %>
-        <p class="<%= current_user = user_game.user ? 'my_card_info' : 'player_card_info' %>" ><%= user_game.user.nickname %></p>
-      </li>
+        <div class="<%= current_user = user_game.user ? 'my_card_info' : 'player_card_info' %>">
+        <p><%= user_game.user.nickname %></p>
+        </div>
+      </div>
     <% end %>
-  </ul>
-  
+  </div>
+
   <% if game.user == current_user %>
   <h2>Share this link with your friends!</h2>
 
