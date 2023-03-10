@@ -11,6 +11,12 @@
             <%= answer.users_game.user.nickname%>
             <%= answer.time %>
             <%= answer.result_status %>
+            <%= link_to accept_path(answer), data: {turbo_method: :patch}, class: "text-decoration-none" do %>
+            <i class="fa-solid fa-check"></i>
+            <% end %>
+            <%= link_to refuse_path(answer), data: {turbo_method: :patch}, class: "text-decoration-none" do %>
+            <i class="fa-solid fa-xmark"></i>
+            <% end %>
           <% end %>
         </li>
     <% end %>
