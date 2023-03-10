@@ -6,7 +6,6 @@ class AnswersController < ApplicationController
     @answers = policy_scope(Answer) # Confirmer le scope avec un TA
     @answers = Answer.where(song: @song).order(time: :asc)
     @song.game.ongoing! if params[:status] == "ongoing"
-    raise
   end
 
   def new
@@ -36,6 +35,8 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     authorize @answer
     @answer.update(result_status: 'accepted')
+    users_game = @answer.users_game
+    users_game.score += 10
     redirect_to song_answers_path
   end
 
@@ -43,6 +44,8 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     authorize @answer
     @answer.update(result_status: 'refused')
+    users_game = @answer.users_game
+    users_game.score -= 5
     redirect_to song_answers_path
   end
 
