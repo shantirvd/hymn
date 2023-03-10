@@ -35,6 +35,9 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     authorize @answer
     @answer.update(result_status: 'accepted')
+    users_game = @answer.users_game
+    users_game.score += 10
+    users_game.save
     redirect_to song_answers_path
   end
 
@@ -42,6 +45,9 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:answer_id])
     authorize @answer
     @answer.update(result_status: 'refused')
+    users_game = @answer.users_game
+    users_game.score -= 5
+    users_game.save
     redirect_to song_answers_path
   end
 
