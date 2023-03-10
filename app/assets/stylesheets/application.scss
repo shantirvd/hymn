@@ -17,3 +17,17 @@ body {
   background: $bg-linear-gradient;
   min-height: 107vh;
 }
+
+.navbar-lewagon {
+  justify-content: space-between;
+  background: #1A0222;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-lewagon .navbar-brand img {
+  width: 30px;
+}
+
