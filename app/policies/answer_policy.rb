@@ -5,12 +5,20 @@ class AnswerPolicy < ApplicationPolicy
       scope.all
     end
   end
-  
+
   def new?
     create?
   end
 
   def create?
+    true
+  end
+
+  def accept?
+    true
+  end
+
+  def refuse?
     true
   end
 end

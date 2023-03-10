@@ -5,6 +5,7 @@ class AnswersController < ApplicationController
     @song = Song.find(params[:song_id])
     @answers = policy_scope(Answer) # Confirmer le scope avec un TA
     @answers = Answer.where(song: @song).order(time: :asc)
+    @song.game.ongoing! if params[:status] == "ongoing"
   end
 
   def new
@@ -28,6 +29,26 @@ class AnswersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def accept
+    @answer = Answer.find(params[:answer_id])
+    authorize @answer
+    @answer.update(result_status: 'accepted')
+    users_game = @answer.users_game
+    users_game.score += 10
+    users_game.save
+    redirect_to song_answers_path
+  end
+
+  def refuse
+    @answer = Answer.find(params[:answer_id])
+    authorize @answer
+    @answer.update(result_status: 'refused')
+    users_game = @answer.users_game
+    users_game.score -= 5
+    users_game.save
+    redirect_to song_answers_path
   end
 
   private

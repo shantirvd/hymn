@@ -5,10 +5,10 @@
   <%= image_tag "https://i.ibb.co/qDv8jzV/cover.png", id:"cover_home", alt: "cover" %>
 
   <div class="container-title pt-3">
-    <h2> Unleash the harmony of group blind test ✨</h2>
-    <%= link_to "Create a game", "games/new", class: "btn_pink_lg" %>
+    <h2> Unleash the harmony of group blind tests ✨</h2>
+    <%= link_to "Create a game", new_game_path, class: "btn_pink_lg" %>
   </div>
 
 </div>
 
-<%#= link_to 'Logout', destroy_user_session_path, data:{turbo_method: :delete} %>
+<%= link_to 'Logout', destroy_user_session_path, data:{turbo_method: :delete} %>

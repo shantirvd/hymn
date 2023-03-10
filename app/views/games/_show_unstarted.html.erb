@@ -13,10 +13,8 @@
       </li>
     <% end %>
   </ul>
+  
   <% if game.user == current_user %>
-
-
-
   <h2>Share this link with your friends!</h2>
 
   <div class="link_join_party d-flex justify-content-between">
@@ -25,7 +23,7 @@
   </div>
 
   <div class="pt-3">
-    <%= link_to 'Start Game', game_path(@game), method: :post,  class: "btn_pink_lg" %>
+    <%= link_to 'Start Game', song_answers_path(game.songs.first, params: { status: 'ongoing' }), class: "btn_pink_lg" %>
   </div>
 
     <% else %>

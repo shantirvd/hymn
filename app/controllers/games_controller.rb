@@ -8,6 +8,7 @@ class GamesController < ApplicationController
     @game = Game.new(params_game)
     @game.user = current_user
     authorize @game
+
     if @game.save
       redirect_to game_path(@game)
     else
@@ -35,17 +36,16 @@ class GamesController < ApplicationController
   def show
     @game = Game.find(params[:id])
     authorize @game
+
     unless current_user == @game.user || !UsersGame.find_by(user: current_user, game: @game).nil?
       users_game = UsersGame.new
       users_game.game = @game
       users_game.user = current_user
       users_game.save!
     end
-  end
 
-  def start
-    @game.update(status: :ongoing)
-    redirect_to @game
+    @game.finished! if params[:status] == "finished"
+
   end
 
   private
