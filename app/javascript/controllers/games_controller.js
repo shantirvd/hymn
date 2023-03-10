@@ -8,4 +8,6 @@ export default class extends Controller {
   playlist(event) {
     this.inputTarget.value = event.currentTarget.attributes.uri.value
   }
+
+
 }

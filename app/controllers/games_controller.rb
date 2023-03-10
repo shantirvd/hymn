@@ -43,6 +43,11 @@ class GamesController < ApplicationController
     end
   end
 
+  def start
+    @game.update(status: :ongoing)
+    redirect_to @game
+  end
+
   private
 
   def params_game
