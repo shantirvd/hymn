@@ -16,4 +16,5 @@
     <% end %>
   </ul>
   <%= link_to "Next Song", "/songs/#{@song.id + 1}/answers" %>
+  <%= link_to "End Game", game_path(@song.game, params: { status: 'finished' }) %>
 </div>
