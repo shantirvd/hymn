@@ -24,8 +24,15 @@ class AnswersController < ApplicationController
     @answer.song = @song
     authorize @answer
 
-    if @answer.save
-      redirect_to song_answers_path(@song)
+    if @answer.save && current_user == game.user
+      AnswersIndexChannel.broadcast_to(
+        @song,
+        render_to_string(partial: "answers", locals: { answer: @answer })
+      )
+      head :ok
+
+    # elsif @answer.save && current_user == users_game
+    #   redirect_to song_answers_path(@song)
     else
       render :new, status: :unprocessable_entity
     end

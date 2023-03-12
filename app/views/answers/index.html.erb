@@ -3,22 +3,11 @@
   <%= render "song-player", song: @song%>
 <% end %>
   <h1>Buzzer Order</h1>
-    <% @answers.each do |answer| %>
-            <%#= answer.id%>
-            <p>
-              - <%= answer.users_game.user.nickname%>
-              <%= answer.time %>
-              <%= answer.result_status %>
-              <% if current_user == @song.game.user %>
-              <%= link_to accept_path(@song, answer), data: {turbo_method: :patch}, class: "text-decoration-none" do %>
-                <i class="fa-solid fa-check"></i>
-              <% end %>
-              <%= link_to refuse_path(@song, answer), data: {turbo_method: :patch}, class: "text-decoration-none" do %>
-                  <i class="fa-solid fa-xmark"></i>
-              <% end %>
-            </p>
-          <% end %>
-    <% end %>
+    <div data-controller="answers-index-subscription" data-answers-index-subscription-answers-index-id-value="<%= @song.id %>">
+      <% @answers.each do |answer| %>
+        <%= render "answers", answer: answer, song: @song %>
+      <% end %>
+    </div>
 
 
 <% if current_user == @song.game.user %>

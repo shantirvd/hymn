@@ -1,0 +1,15 @@
+<div data-answers-index-subscription-target="answers">
+  <p>
+    - <%= answer.users_game.user.nickname%>
+    <%= answer.time %>
+    <%= answer.result_status %>
+    <% if current_user == song.game.user %>
+      <%= link_to accept_path(song, answer), data: {turbo_method: :patch}, class: "text-decoration-none" do %>
+        <i class="fa-solid fa-check"></i>
+      <% end %>
+      <%= link_to refuse_path(song, answer), data: {turbo_method: :patch}, class: "text-decoration-none" do %>
+          <i class="fa-solid fa-xmark"></i>
+      <% end %>
+    <% end %>
+  </p>
+</div>
