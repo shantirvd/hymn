@@ -35,7 +35,9 @@ class AnswersController < ApplicationController
     if @answer.save
       AnswersIndexChannel.broadcast_to(
         @song,
-        render_to_string(partial: "answers", locals: { answer: @answer, song: @song, game_master: (current_user == game.user ? 'true' : 'false') })
+        answer: render_to_string(partial: "answers", locals: { answer: @answer, song: @song }),
+        answer_links: render_to_string(partial: "answer_links", locals: { answer: @answer, song: @song }),
+        game_master_id: game.user.id
       )
       redirect_to song_answers_path(@song)
     else

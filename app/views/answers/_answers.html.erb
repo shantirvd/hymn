@@ -1,16 +1,10 @@
 <div>
-  <p>
-    - <%= answer.users_game.user.nickname%>
-    <%= answer.time %>
-    <%= answer.result_status %>
+  <p>- <%= answer.users_game.user.nickname%>
+  <%= answer.time %>
+  <%= answer.result_status %></p>
 
-    <%# <% if current_user == @song.game.user %>
-      <%= link_to accept_path(song, answer), data: {turbo_method: :patch}, class: "text-decoration-none d-none" do %>
-        <i class="fa-solid fa-check"></i>
-      <% end %>
-      <%= link_to refuse_path(song, answer), data: {turbo_method: :patch}, class: "text-decoration-none d-none" do %>
-          <i class="fa-solid fa-xmark"></i>
-      <% end %>
+  <div data-answers-index-subscription-target="links">
+    <%#= render "answer_links", song: song, answer: answer %>
+  </div>
 
-  </p>
 </div>
