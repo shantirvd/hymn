@@ -1,6 +1,12 @@
 class GamesController < ApplicationController
   def new
     @game = Game.new
+    @step = "new_playlist"
+
+    if params[:playlist].present?
+      @step = "namegame"
+    end
+
     authorize @game
   end
 
@@ -46,6 +52,12 @@ class GamesController < ApplicationController
 
     @game.finished! if params[:status] == "finished"
 
+  end
+
+  def list
+    @playlists = RSpotify::Playlist.search("#{params[:query]}").first(8)
+    render json: { html: render_to_string(partial: "list", locals: { playlists: @playlists }) }
+    skip_authorization
   end
 
   private
