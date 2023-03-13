@@ -10,9 +10,9 @@ export default class extends Controller {
   }
 
   playlist(event) {
-    this.inputTarget.value = event.currentTarget.attributes.uri.value
-    // this.cardTargets.classList.toggle("active")
-    this.cardTarget.forEach( (elem) => { elem.classList.toggle("active") } )
+    this.inputTarget.value = event.currentTarget.attributes.uri.value;
+    this.cardTargets.forEach((elem) => { elem.classList.remove("active") } )
+    event.currentTarget.classList.add("active")
 
   }
 }
