@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import AnswersController from "./answers_controller"
-application.register("answers", AnswersController)
-
 import AnswersIndexSubscriptionController from "./answers_index_subscription_controller"
 application.register("answers-index-subscription", AnswersIndexSubscriptionController)
 
