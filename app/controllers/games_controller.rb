@@ -47,7 +47,12 @@ class GamesController < ApplicationController
       users_game = UsersGame.new
       users_game.game = @game
       users_game.user = current_user
-      users_game.save!
+      if users_game.save!
+        GameChannel.broadcast_to(
+          @game,
+          { event: "player_joined", html: render_to_string(partial: "player", locals: {user_game: users_game}) }
+        )
+      end
     end
 
     @game.finished! if params[:status] == "finished"
