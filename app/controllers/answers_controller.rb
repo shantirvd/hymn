@@ -6,6 +6,7 @@ class AnswersController < ApplicationController
     @answers = policy_scope(Answer) # Confirmer le scope avec un TA
     @answers = Answer.where(song: @song).order(time: :asc)
     @song.game.ongoing! if params[:status] == "ongoing"
+    @game = @song.game
   end
 
   def new
@@ -27,13 +28,9 @@ class AnswersController < ApplicationController
     if @answer.save
       AnswersIndexChannel.broadcast_to(
         @song,
-        render_to_string(partial: "answers", locals: { answer: @answer, song: @song })
+        render_to_string(partial: "answers", locals: { answer: @answer, song: @song, game_master: (current_user == game.user ? 'true' : 'false') })
       )
       redirect_to song_answers_path(@song)
-      # head :ok
-
-    # elsif @answer.save && current_user == users_game
-    #   redirect_to song_answers_path(@song)
     else
       render :new, status: :unprocessable_entity
     end

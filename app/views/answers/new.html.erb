@@ -1,4 +1,4 @@
- <div class="container-new-song">
+ <div class="container-new-song" data-controller="answers-index-subscription" data-answers-index-subscription-song-id-value="<%= @song.id %>">
 
   <%= image_tag "https://i.ibb.co/6wKKzwH/LOGO.png", alt: "logo" %>
 
@@ -7,6 +7,4 @@
 
   <%= render "buzzer", song: @song %>
   <p class="info_card">🤫 Don’t say anything! Wait to see if you are the first to answer...</p>
-
-
 </div>

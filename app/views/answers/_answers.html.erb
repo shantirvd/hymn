@@ -1,9 +1,9 @@
-<div data-answers-index-subscription-target="answers">
+<div>
   <p>
     - <%= answer.users_game.user.nickname%>
     <%= answer.time %>
     <%= answer.result_status %>
-    <% if current_user == song.game.user %>
+    <% if current_user == @song.game.user %>
       <%= link_to accept_path(song, answer), data: {turbo_method: :patch}, class: "text-decoration-none" do %>
         <i class="fa-solid fa-check"></i>
       <% end %>

@@ -2,13 +2,14 @@
 <% if current_user == @song.game.user %>
   <%= render "song-player", song: @song%>
 <% end %>
-  <h1>Buzzer Order</h1>
-    <div data-controller="answers-index-subscription" data-answers-index-subscription-song-id-value="<%= @song.id %>">
-      <% @answers.each do |answer| %>
-        <%= render "answers", answer: answer, song: @song %>
-      <% end %>
-    </div>
-
+<h1>Buzzer Order</h1>
+<div data-controller="answers-index-subscription" data-answers-index-subscription-song-id-value="<%= @song.id %>">
+  <div data-answers-index-subscription-target="answers">
+    <% @answers.each do |answer| %>
+      <%= render "answers", answer: answer, song: @song, game_master: current_user == @game.user %>
+    <% end %>
+  </div>
+</div>
 
 <% if current_user == @song.game.user %>
   <%= link_to "Next Song", song_answers_path(@song.id + 1), data: {turbo: false} %>

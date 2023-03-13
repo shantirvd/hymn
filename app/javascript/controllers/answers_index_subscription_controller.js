@@ -10,12 +10,9 @@ export default class extends Controller {
     this.channel = createConsumer().subscriptions.create(
       { channel: "AnswersIndexChannel", song_id: this.songIdValue },
       { received: (data) => {
-          console.log(data);
           this.answersTarget.insertAdjacentHTML("beforeend", data);
         }
       }
     )
-    console.log(`Subscribed to the answers index with the id ${this.songIdValue}.`)
-
     }
   }
