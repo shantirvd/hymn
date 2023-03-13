@@ -7,6 +7,9 @@ import { application } from "./application"
 import AnswersIndexSubscriptionController from "./answers_index_subscription_controller"
 application.register("answers-index-subscription", AnswersIndexSubscriptionController)
 
+import GameSubscriptionController from "./game_subscription_controller"
+application.register("game-subscription", GameSubscriptionController)
+
 import GamesController from "./games_controller"
 application.register("games", GamesController)
 

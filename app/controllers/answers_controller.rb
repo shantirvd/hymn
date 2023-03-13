@@ -5,8 +5,15 @@ class AnswersController < ApplicationController
     @song = Song.find(params[:song_id])
     @answers = policy_scope(Answer) # Confirmer le scope avec un TA
     @answers = Answer.where(song: @song).order(time: :asc)
-    @song.game.ongoing! if params[:status] == "ongoing"
     @game = @song.game
+
+    if params[:status] == "ongoing"
+      @song.game.ongoing!
+      GameChannel.broadcast_to(
+        @song.game,
+        { event: "game_started", url: new_song_answer_path(@song.game.songs.first) }
+      )
+    end
   end
 
   def new

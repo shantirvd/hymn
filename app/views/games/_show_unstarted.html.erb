@@ -5,14 +5,13 @@
   <h1 class="pt-5 pb-2"><%= game.name.capitalize %></h1>
   <p>Waiting for participants to join the game...</p>
 
-  <div>
+  <div data-controller="game-subscription"
+      data-game-subscription-game-id-value="<%= game.id %>"
+      data-game-subscription-game-master-value="<%= game.user == current_user %>"
+      data-game-subscription-target="players"
+    >
     <% game.users_games.each do |user_game| %>
-      <div class="<%= current_user = user_game.user ? 'my_card' : 'player_card' %>" >
-        <%= cl_image_tag user_game.user.photo.key, class:"profil_round" %>
-        <div class="<%= current_user = user_game.user ? 'my_card_info' : 'player_card_info' %>">
-        <p><%= user_game.user.nickname %></p>
-        </div>
-      </div>
+      <%= render "player", user_game: user_game %>
     <% end %>
   </div>
 
@@ -21,7 +20,7 @@
 
   <div class="link_join_party d-flex justify-content-between">
     <i class="fa-solid fa-link"></i>
-    <p>https://hymn-game.osc-fr1.scalingo.io/games/<%= game.id %></p>
+    <p>www.hymngame.online/games/<%= game.id %></p>
   </div>
 
   <div class="pt-3">
@@ -29,7 +28,10 @@
   </div>
 
     <% else %>
+<<<<<<< HEAD
       <%= link_to "Start Game", new_song_answer_path(game.songs.first), class: "btn_pink_lg", data: {turbolinks: false} %>
+=======
+>>>>>>> master
       <p class="link_join_party"> Please wait for the game master to start the game! You will be soon redirected.</p>
     <% end %>
 </div>
