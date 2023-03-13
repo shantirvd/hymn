@@ -3,7 +3,7 @@
   <%= render "song-player", song: @song%>
 <% end %>
   <h1>Buzzer Order</h1>
-    <div data-controller="answers-index-subscription" data-answers-index-subscription-answers-index-id-value="<%= @song.id %>">
+    <div data-controller="answers-index-subscription" data-answers-index-subscription-song-id-value="<%= @song.id %>">
       <% @answers.each do |answer| %>
         <%= render "answers", answer: answer, song: @song %>
       <% end %>
