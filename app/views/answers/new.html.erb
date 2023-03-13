@@ -1,10 +1,7 @@
- <div class="container-new-song" data-controller="answers-index-subscription" data-answers-index-subscription-song-id-value="<%= @song.id %>">
-
-  <%= image_tag "https://i.ibb.co/6wKKzwH/LOGO.png", alt: "logo" %>
-
-
-  <h2 class="pt-5 text-center">Can you guess the song?</h2>
-
-  <%= render "buzzer", song: @song %>
-  <p class="info_card">🤫 Don’t say anything! Wait to see if you are the first to answer...</p>
+<div class="container-answer pt-5 " data-controller="answers-index-subscription" data-answers-index-subscription-song-id-value="<%= @song.id %>">
+    <h1 class="text-center pb-5">Can you guess the song?</h1>
+  <div class="container-buzzer d-flex justify-content-center pt-5">
+    <%= render "buzzer", song: @song %>
+  </div>
 </div>
+  <p class="info_card fixed-bottom mb-5 mx-4">🤫 Don’t say anything! Wait to see if you are the first to answer...</p>
