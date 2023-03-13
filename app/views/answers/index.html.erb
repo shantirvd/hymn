@@ -8,12 +8,13 @@
         <li>
           <% if answer.result_status == "pending" %>
             <%= answer.id%>
+
             <%= answer.users_game.user.nickname%>
             <%= answer.time %>
-            <%= answer.result_status %>
+           <p> <%= answer.result_status %> </p>
           <% end %>
         </li>
     <% end %>
   </ul>
-  <%= link_to "Next Song", "/songs/#{@song.id + 1}/answers" %>
+  <%= link_to "Next Song", "/songs/#{@song.id + 1}/answers, class: "btn_pink_lg" %>
 </div>
