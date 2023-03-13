@@ -24,28 +24,28 @@
 </div>
 
 <div data-controller="games">
-  <div class="d-flex flex-wrap pt-3">
+  <div class="d-flex flex-wrap gap-3 pt-3">
     <% if params[:query].present? %>
       <% playlists = RSpotify::Playlist.search("#{params[:query]}").first(8) %>
 
 
         <% playlists.each do |playlist| %>
-          <div data-action="click->games#playlist" uri="<%= playlist.uri %>" class='text-center col-6 playlist_cards'>
-            <div class="playlist_card">
+          <div data-action="click->games#playlist" uri="<%= playlist.uri %>" class='playlist_card text-center playlist_cards' data-games-target="card">
               <h4><%= playlist.name.truncate(12) %></h4>
               <img src="<%= playlist.images.first["url"] %>">
-            </div>
           </div>
         <% end %>
       <% end %>
   </div>
-    <h2>Choose a name for this game</h2>
-    <%= simple_form_for(@game) do |f| %>
-      <%= f.input :name %>
-      <%= f.input :spotify_playlist_id, as: :hidden, input_html: {
-        value: "some value",
-        data: { games_target: "input" }
-        } %>
-      <%= f.button :submit, class: "btn_pink_lg" %>
-    <% end %>
+    <div class="game-infos">
+      <h2>Choose a name for this game</h2>
+      <%= simple_form_for(@game) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :spotify_playlist_id, as: :hidden, input_html: {
+          value: "some value",
+          data: { games_target: "input" }
+          } %>
+        <%= f.button :submit, class: "btn_pink_lg" %>
+      <% end %>
+    </div>
 </div>
