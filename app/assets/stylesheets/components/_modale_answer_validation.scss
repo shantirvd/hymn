@@ -1,0 +1,50 @@
+.modale {
+  background-color: rgba(212, 212, 212, 0.8); //to be commented
+                                                //test on background blur when integrated in final HTML
+  // backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: (0px 6px 18px rgba(45, 45, 45, 0.13));
+  padding: 20px 70px;
+  border: solid 2px $brand-900;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.avatar-modale {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  > img {
+    border-radius: 100%;
+    border: solid 2px transparent;
+    height: 115px;
+    width: 115px;
+    display: flex;
+    justify-content: center;
+    border-color: $blue;
+    box-shadow: 0px 0px 15px $blue;
+    height: 135px;
+    width: 135px;
+    // transform: scale(1.4);
+    }
+  > h3 {
+    margin-top: 10%;
+    font-size: 1.2em;
+  }
+  }
+
+  .answers {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 10%;
+    font-size: 3.7em;
+  }
+
+  #wrong {
+    color: #E54456;
+  }
+  #correct {
+    color: $brand-900;
+  }
