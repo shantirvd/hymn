@@ -1,0 +1,26 @@
+import { Controller } from "@hotwired/stimulus"
+import { createConsumer } from "@rails/actioncable"
+
+// Connects to data-controller="game-subscription"
+export default class extends Controller {
+  static values = { gameId: Number }
+  static targets = ["players"]
+
+  connect() {
+    this.channel = createConsumer().subscriptions.create(
+      { channel: "GameChannel", id: this.gameIdValue },
+      { received: data => this.#handleEvent(data) }
+    )
+    // { received: data => this.playersTarget.insertAdjacentHTML("beforeend", data) }
+    // )
+    console.log(`Subscribe to the chatroom with the id ${this.gameIdValue}.`)
+  }
+
+  #handleEvent(data) {
+    if (data["event"] === "player_joined") {
+      this.playersTarget.insertAdjacentHTML("beforeend", data["html"])
+    } else if (data["event"] === "game_started") {
+      window.location.assign(data["url"])
+    }
+  }
+}
