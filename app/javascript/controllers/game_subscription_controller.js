@@ -3,7 +3,7 @@ import { createConsumer } from "@rails/actioncable"
 
 // Connects to data-controller="game-subscription"
 export default class extends Controller {
-  static values = { gameId: Number }
+  static values = { gameId: Number, gameMaster: Boolean }
   static targets = ["players"]
 
   connect() {
@@ -19,7 +19,7 @@ export default class extends Controller {
   #handleEvent(data) {
     if (data["event"] === "player_joined") {
       this.playersTarget.insertAdjacentHTML("beforeend", data["html"])
-    } else if (data["event"] === "game_started") {
+    } else if (data["event"] === "game_started" && this.gameMasterValue === false ) {
       window.location.assign(data["url"])
     }
   }
