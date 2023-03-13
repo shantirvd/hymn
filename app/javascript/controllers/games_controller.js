@@ -14,7 +14,6 @@ export default class extends Controller {
     this.inputTarget.value = event.currentTarget.attributes.uri.value;
     this.cardTargets.forEach((elem) => { elem.classList.remove("active") } )
     event.currentTarget.classList.add("active")
-
   }
 
   async updatelist(evt) {

@@ -2,24 +2,18 @@
 <% if current_user == @song.game.user %>
   <%= render "song-player", song: @song%>
 <% end %>
-  <h1>Buzzer Order</h1>
+<h1>Buzzer Order</h1>
+<div
+  data-controller="answers-index-subscription"
+  data-answers-index-subscription-song-id-value="<%= @song.id %>"
+  data-answers-index-subscription-current-user-id-value="<%= current_user.id %>"
+  >
+  <div data-answers-index-subscription-target="answers">
     <% @answers.each do |answer| %>
-            <%#= answer.id%>
-            <p>
-              - <%= answer.users_game.user.nickname%>
-              <%= answer.time %>
-              <%= answer.result_status %>
-              <% if current_user == @song.game.user %>
-              <%= link_to accept_path(@song, answer), data: {turbo_method: :patch}, class: "text-decoration-none" do %>
-                <i class="fa-solid fa-check"></i>
-              <% end %>
-              <%= link_to refuse_path(@song, answer), data: {turbo_method: :patch}, class: "text-decoration-none" do %>
-                  <i class="fa-solid fa-xmark"></i>
-              <% end %>
-            </p>
-          <% end %>
+      <%= render "answers", answer: answer, song: @song %>
     <% end %>
-
+  </div>
+</div>
 
 <% if current_user == @song.game.user %>
   <div class=" d-flex justify-content-between flex-grow">
