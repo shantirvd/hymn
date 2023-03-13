@@ -26,7 +26,7 @@
 
       <% playlists.each do |playlist| %>
         <div data-action="click->games#playlist" uri="<%= playlist.uri %>" class='text-center col-6'>
-          <p><%= playlist.name.truncate(12) %></p>
+          <p><%= playlist.name %></p>
           <img src="<%= playlist.images.first["url"] %>" width="100">
         </div>
       <% end %>
